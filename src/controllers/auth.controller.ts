@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
 
-export const test = async (req: Request, res: Response) => {
-	res.send('Received request')
+export const test = async (req: Request, res: Response): Promise<any> => {
+	return res.send('Received request')
 }

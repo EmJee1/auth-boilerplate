@@ -1,12 +1,11 @@
-import { Errback, Request, Response, NextFunction } from 'express'
+import { Errback, Request, Response } from 'express'
 import { ValidationError } from 'express-validation'
 
 const expressValidationError = (
 	err: Errback,
 	req: Request,
-	res: Response,
-	next: NextFunction
-) => {
+	res: Response
+): Response => {
 	if (err instanceof ValidationError)
 		return res.status(err.statusCode).json(err)
 
