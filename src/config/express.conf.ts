@@ -17,9 +17,11 @@ const {
 const app = express()
 
 // global middleware (for all requests)
-if (PARSE_JSON_BODY) app.use(express.json())
-if (PARSE_URLENCODED_BODY)
-	app.use(express.urlencoded({ extended: PARSE_URLENCODED_BODY_EXTENDED }))
+if (parseInt(PARSE_JSON_BODY)) app.use(express.json())
+if (parseInt(PARSE_URLENCODED_BODY)) {
+	const extended = PARSE_URLENCODED_BODY_EXTENDED ? true : false
+	app.use(express.urlencoded({ extended }))
+}
 
 // listen to defined port number
 app.listen(APP_PORT, () => console.log(`Express listening on port ${APP_PORT}`))
