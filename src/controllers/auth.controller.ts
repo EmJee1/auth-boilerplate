@@ -10,16 +10,13 @@ export const register = async (
 	req: Request,
 	res: Response
 ): Promise<Response> => {
-	const { email, password, name } = req.body
-
-	const query = await User.findOne({ email })
+	const query = await User.findOne({ email: req.body.email })
 
 	if (query)
 		return res.status(409).json({ err: 'User with email already exists' })
 
-	const newUser = new User({ email, password, name })
-
 	try {
+		const newUser = new User(req.body)
 		await newUser.save()
 	} catch (err) {
 		return res.status(500).json({ err })
