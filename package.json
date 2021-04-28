@@ -3,11 +3,12 @@
 	"type": "module",
 	"version": "1.0.0",
 	"description": "",
-	"main": "./dist/index.js",
+	"main": "./dist/app.js",
 	"scripts": {
-		"build": "tsc",
-		"compiler": "tsc -w",
-		"start": "nodemon ./dist/app"
+		"compiler": "tsc",
+		"compiler:watch": "tsc -w",
+		"start": "node ./dist/app",
+		"dev": "nodemon ./dist/app"
 	},
 	"keywords": [],
 	"author": "",
