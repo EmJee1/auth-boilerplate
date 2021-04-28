@@ -1,11 +1,9 @@
-// import dependencies
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
-// configure dotenv
 dotenv.config()
 
-// get necessary environment variables
 const {
 	APP_PORT,
 	PARSE_JSON_BODY,
@@ -13,7 +11,6 @@ const {
 	PARSE_URLENCODED_BODY_EXTENDED,
 } = process.env
 
-// create express app instance
 const app = express()
 
 // global middleware (for all requests)
@@ -23,8 +20,8 @@ if (parseInt(PARSE_URLENCODED_BODY)) {
 	app.use(express.urlencoded({ extended }))
 }
 
-// listen to defined port number
+app.use(cors())
+
 app.listen(APP_PORT, () => console.log(`Express listening on port ${APP_PORT}`))
 
-// export express app object
 export default app
