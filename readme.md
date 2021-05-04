@@ -91,5 +91,5 @@ root
     │       expressValidationError.ts
     │       tokenValidation.ts
     └───validation
-              auth.validation.ts
+            auth.validation.ts
 ```
