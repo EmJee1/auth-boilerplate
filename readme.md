@@ -8,12 +8,13 @@ Setup new express APIs easily with this template
   - [🏎️ Setup](#️-setup)
   - [🔑 Environment variables](#-environment-variables)
     - [➡️ Variables overview](#️-variables-overview)
+  - [🚘 Project structure](#-project-structure)
 
 ## 💪 Features
 
-- 🔒 Written in TypeScript
-- ✔️ ESLint configuration
-- ⚖️ Scalable and easy-to-work-with folder structure
+- 🔒 Written in **TypeScript**
+- ✔️ **ESLint** configuration
+- ⚖️ **Scalable** and **easy-to-work-with folder structure**
 
 ## 📦 Used packages
 
@@ -55,10 +56,40 @@ The template comes with a .env.example file, this file contains all the needed v
 ### ➡️ Variables overview
 
 |Variable name|Default|Explanation|
-|-:|-:|-:|
+|-|:-:|-:|
 |APP_PORT|`80`|Port Express will listen on|
 |PARSE_JSON_BODY|`1`|Whether or not express will parse JSON request bodies|
 |PARSE_URLENCODED_BODY|`0`|Whether or not express will parse url-encoded request bodies|
 |PARSE_URLENCODED_BODY_EXTENDED|`0`|Wheter or not express will pass extended to the url-encoded body parser|
 |DB_CONNECTION_URI|`""`|MongoDB connection string|
 |JSON_WEBTOKEN_SECRET|`""`|The secret that jsonwebtoken will use to encrypt and decrypt tokens|
+
+## 🚘 Project structure
+
+The project follows the following structure by default. It is not opinionated, so feel free to change it to your likings.
+
+```md
+root
+│   configuration files
+│───node modules
+│        installed npm packages
+└───dist
+│       compiled JavaScript code
+└───src
+    │   app.ts
+    └───config
+    │       express.conf.ts
+    │       mongodb.conf.ts
+    └───controllers
+    │       auth.controller.ts
+    └───middlewares
+    └───models
+    │       User.ts
+    └───routers
+    │       auth.router.ts
+    └───utils
+    │       expressValidationError.ts
+    │       tokenValidation.ts
+    └───validation
+              auth.validation.ts
+```
