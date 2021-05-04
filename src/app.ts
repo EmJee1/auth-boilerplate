@@ -1,5 +1,6 @@
-// import express app
+// import configs
 import app from './config/express.conf.js'
+import './config/mongodb.conf.js'
 
 // import routers
 import authRouter from './routers/auth.router.js'
