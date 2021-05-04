@@ -1,14 +1,17 @@
-# Express-api-template
+# 📋 Express-api-template
 
 Setup new express APIs easily with this template
 
-- [Express-api-template](#express-api-template)
+- [📋 Express-api-template](#-express-api-template)
   - [💪 Features](#-features)
   - [📦 Used packages](#-used-packages)
   - [🏎️ Setup](#️-setup)
   - [🔑 Environment variables](#-environment-variables)
     - [➡️ Variables overview](#️-variables-overview)
   - [🚘 Project structure](#-project-structure)
+    - [📇 App.ts](#-appts)
+    - [⚙️ Config](#️-config)
+    - [🚦 Router](#-router)
 
 ## 💪 Features
 
@@ -93,3 +96,34 @@ root
     └───validation
             auth.validation.ts
 ```
+
+### 📇 App.ts
+
+The app.ts is your main entry file for the API. The app.ts handles only 3 things:
+
+1. Import the necessary [⚙️ Config](#️-config) files
+2. Import and use the [🚦 Router](#-router) files
+3. Import and use the expressValidationError for express-validation
+
+### ⚙️ Config
+
+The config directory contains packages and services that need to be configured / registered. The template ships with 2 config files.
+
+**Defaults:**
+
+1. express.conf.ts
+2. mongodb.conf.ts
+
+**Naming:**
+
+`<service-name>.conf.ts`
+
+### 🚦 Router
+
+A router file holds a category of routes, i.e. authentication routes.
+
+**Naming:**
+
+`<category-name>.conf.ts`
+
+**Routerfile structure:**
