@@ -126,4 +126,15 @@ A router file holds a category of routes, i.e. authentication routes.
 
 `<category-name>.conf.ts`
 
-**Routerfile structure:**
+**Routerfile contents:**
+
+1. Import external dependencies
+   - By default the express router and the validate function
+2. Import router helpers
+   - By default the controllers and validation
+   - Recommended to use `import * as <helper> from '../path/to/helper.js'`
+3. Create an express router instance
+4. Initialize the routes
+   - Use the validation middleware where needed, and the imported controler
+   - I.e. `router.post('route', validate(validation.route), handler.route)`
+5. Export the router
