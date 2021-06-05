@@ -1,16 +1,17 @@
+import UserDocument from './types/User.js'
 import mongoose from 'mongoose'
 import { hash } from 'bcrypt'
 
-interface UserDocument extends mongoose.Document {
-	email: string
-	name: string
-	password: string
-	createdAt: Date
-}
-
 const UserSchema = new mongoose.Schema({
-	email: String,
-	name: String,
+	email: {
+		type: String,
+		unique: true,
+		required: true,
+	},
+	name: {
+		type: String,
+		required: true,
+	},
 	password: String,
 	createdAt: {
 		type: Date,
