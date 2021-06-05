@@ -61,11 +61,17 @@ The template comes with a .env.example file, this file contains all the needed v
 |Variable name|Default|Explanation|
 |-|:-:|-:|
 |APP_PORT|`80`|Port Express will listen on|
-|PARSE_JSON_BODY|`1`|Whether or not express will parse JSON request bodies|
-|PARSE_URLENCODED_BODY|`0`|Whether or not express will parse url-encoded request bodies|
-|PARSE_URLENCODED_BODY_EXTENDED|`0`|Wheter or not express will pass extended to the url-encoded body parser|
 |DB_CONNECTION_URI|`""`|MongoDB connection string|
 |JSON_WEBTOKEN_SECRET|`""`|The secret that jsonwebtoken will use to encrypt and decrypt tokens|
+|SEND_MAIL_fROM|`""`|The addres emails will be sent from|
+|SMTP_MAIL_HOST|`""`|The SMTP host server|
+|SMTP_MAIL_PORT|`""`|The SMTP server port|
+|SMTP_MAIL_PORT||The SMTP server port|
+|MAIL_AUTH_USER|`""`|The SMTP authentication username|
+|MAIL_AUTH_PASSWORD|`""`|The SMTP authentication password|
+|APP_NAME|`""`|Name of project, currently used in emails|
+|API_BASEURL|`""`|BaseURL of the API, used for anchor tags in emails|
+|API_MAILLOGO|`""`|Link after `API_BASEURL`, used to display logo in email|
 
 ## 🚘 Project structure
 
