@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { compareSync } from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
+import UserRegisteredMessage from '../messages/UserRegistered.msg.js'
 import User from '../models/User.js'
 
 const { JSON_WEBTOKEN_SECRET } = process.env
@@ -38,6 +39,8 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
 	const token = jwt.sign({ _id: query._id }, JSON_WEBTOKEN_SECRET, {
 		expiresIn: '4d',
 	})
+
+	new UserRegisteredMessage(query).mail()
 
 	return res.status(200).json({ token, msg: 'Logged in successfully' })
 }
