@@ -23,6 +23,8 @@ export const register = async (
 		return res.status(500).json({ err })
 	}
 
+	new UserRegisteredMessage(query).mail()
+
 	res.status(201).json({ msg: 'User created successfully' })
 }
 
@@ -39,8 +41,6 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
 	const token = jwt.sign({ _id: query._id }, JSON_WEBTOKEN_SECRET, {
 		expiresIn: '4d',
 	})
-
-	new UserRegisteredMessage(query).mail()
 
 	return res.status(200).json({ token, msg: 'Logged in successfully' })
 }
