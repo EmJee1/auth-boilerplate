@@ -1,4 +1,4 @@
-import tokenValidation from '../utils/tokenValidation'
+import tokenValidation from '../utils/tokenValidation.js'
 import { Joi } from 'express-validation'
 
 export const register = {
