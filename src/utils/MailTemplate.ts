@@ -1,5 +1,6 @@
-import UserDocument from '../models/types/User.js'
 import transport from '../config/nodemailer.conf.js'
+import UserDocument from '../models/types/User.js'
+import logger from '../config/winston.conf.js'
 
 const { API_BASEURL, API_MAILLOGO, APP_NAME, SEND_MAIL_FROM } = process.env
 
@@ -126,7 +127,12 @@ class MailTemplate {
 		}
 
 		transport.sendMail(mailOptions, err => {
-			if (err) console.log('Mail error:', err)
+			if (err)
+				logger.error('Mail error:', {
+					to: mailOptions.to,
+					subject: mailOptions.subject,
+					err,
+				})
 		})
 	}
 }
