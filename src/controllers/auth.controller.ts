@@ -16,14 +16,10 @@ export const register = async (
 	if (query)
 		return res.status(409).json({ err: 'User with email already exists' })
 
-	try {
-		const newUser = new User(req.body)
-		await newUser.save()
-	} catch (err) {
-		return res.status(500).json({ err })
-	}
+	const newUser = new User(req.body)
+	await newUser.save()
 
-	new UserRegisteredMessage(query).mail()
+	new UserRegisteredMessage(newUser).mail()
 
 	res.status(201).json({ msg: 'User created successfully' })
 }
