@@ -5,8 +5,13 @@ import app from '../app.js'
 
 const request = supertest(app)
 
-describe('Authentication', () => {
+const { email, name, password } = {
+	email: 'test@email.com',
+	name: 'Some username',
+	password: 'password',
+}
 
+describe('Authentication', () => {
 	afterAll(() => {
 		mongoose.disconnect()
 		server.close()
@@ -15,12 +20,15 @@ describe('Authentication', () => {
 	it('Register new user', async () => {
 		const res = await request
 			.post('/auth/register')
-			.send({
-				email: 'test@email.com',
-				name: 'Some username',
-				password: 'password',
-			})
+			.send({ email, name, password })
 
 		expect(res.status).toBe(201)
+	})
+
+	it('Logging the new user in', async () => {
+		const res = await request.post('/auth/login').send({ email, password })
+
+		expect(res.status).toBe(200)
+		expect(res.body.token).toBeDefined()
 	})
 })
