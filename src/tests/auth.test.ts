@@ -1,4 +1,5 @@
 import { server } from '../config/express.conf'
+import User from '../models/User.js'
 import supertest from 'supertest'
 import mongoose from 'mongoose'
 import app from '../app.js'
@@ -12,7 +13,9 @@ const { email, name, password } = {
 }
 
 describe('Authentication', () => {
-	afterAll(() => {
+	afterAll(async () => {
+		await User.deleteOne({ email, name })
+
 		mongoose.disconnect()
 		server.close()
 	})
