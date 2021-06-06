@@ -7,10 +7,10 @@
 	"scripts": {
 		"compiler": "tsc",
 		"compiler:watch": "tsc -w",
-		"start": "node ./dist/app",
-		"dev": "nodemon ./dist/app",
-		"test": "jest --testPathPattern=dist",
-		"test:watch": "jest --watch"
+		"start": "cross-env NODE_ENV=production node ./dist/app",
+		"dev": "cross-env NODE_ENV=development nodemon ./dist/app",
+		"test": "cross-env NODE_ENV=test jest --testPathPattern=dist",
+		"test:watch": "cross-env NODE_ENV=test jest --watch --testPathPattern=dist"
 	},
 	"keywords": [],
 	"author": "",
@@ -23,7 +23,8 @@
 		"express-validation": "^3.0.8",
 		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^5.12.2",
-		"nodemailer": "^6.6.1"
+		"nodemailer": "^6.6.1",
+		"winston": "^3.3.3"
 	},
 	"devDependencies": {
 		"@types/bcrypt": "^3.0.0",
@@ -36,6 +37,7 @@
 		"@types/supertest": "^2.0.11",
 		"@typescript-eslint/eslint-plugin": "^4.17.0",
 		"@typescript-eslint/parser": "^4.17.0",
+		"cross-env": "^7.0.3",
 		"eslint": "^7.22.0",
 		"jest": "^27.0.4",
 		"supertest": "^6.1.3",

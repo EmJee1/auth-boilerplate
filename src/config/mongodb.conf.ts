@@ -1,3 +1,4 @@
+import logger from './winston.conf.js'
 import mongoose from 'mongoose'
 
 mongoose.connect(process.env.DB_CONNECTION_URI, {
@@ -8,6 +9,6 @@ mongoose.connect(process.env.DB_CONNECTION_URI, {
 
 const db = mongoose.connection
 
-db.once('open', () => console.log('MongoDB connection successful'))
+db.once('open', () => logger.info('MongoDB connection successful'))
 
-db.on('error', () => console.log('MongoDB connection error'))
+db.on('error', () => logger.error('MongoDB connection error'))

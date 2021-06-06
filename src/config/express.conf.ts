@@ -1,3 +1,4 @@
+import logger from './winston.conf.js'
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
@@ -15,7 +16,7 @@ app.use('/public', express.static('public'))
 app.use(cors())
 
 export const server = app.listen(APP_PORT, () =>
-	console.log(`Express listening on port ${APP_PORT}`)
+	logger.info(`Express listening on port ${APP_PORT}`)
 )
 
 export default app
