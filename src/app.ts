@@ -13,3 +13,5 @@ import expressValidationError from './utils/expressValidationError.js'
 
 // handle validation errors
 app.use(expressValidationError)
+
+export default app
