@@ -10,8 +10,8 @@
 		"compiler:watch": "tsc -w",
 		"start": "cross-env NODE_ENV=production node ./dist/app",
 		"dev": "cross-env NODE_ENV=development nodemon ./dist/app",
-		"test": "cross-env NODE_ENV=test jest --testPathPattern=dist",
-		"test:watch": "cross-env NODE_ENV=test jest --watch --testPathPattern=dist"
+		"test": "cross-env NODE_ENV=development jest --testPathPattern=dist",
+		"test:watch": "cross-env NODE_ENV=development jest --watch --testPathPattern=dist"
 	},
 	"keywords": [],
 	"author": "",
