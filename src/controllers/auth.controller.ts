@@ -14,7 +14,7 @@ export const register = async (
 	const query = await User.findOne({ email: req.body.email })
 
 	if (query)
-		return res.status(409).json({ err: 'User with email already exists' })
+		return res.status(409).json({ msg: 'User with email already exists' })
 
 	const newUser = new User(req.body)
 	await newUser.save()
@@ -29,10 +29,10 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
 
 	const query = await User.findOne({ email })
 
-	if (!query) return res.status(401).json({ err: 'Credentials invalid' })
+	if (!query) return res.status(401).json({ msg: 'Credentials invalid' })
 
 	if (!compareSync(password, query.password))
-		return res.status(401).json({ err: 'Credentials invalid' })
+		return res.status(401).json({ msg: 'Credentials invalid' })
 
 	const token = jwt.sign({ _id: query._id }, JSON_WEBTOKEN_SECRET, {
 		expiresIn: '4d',
