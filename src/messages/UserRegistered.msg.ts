@@ -1,5 +1,5 @@
-import MailTemplate from '../utils/MailTemplate.js'
 import UserDocument from '../models/types/User.js'
+import Message from '../utils/MailTemplate.js'
 
 const { APP_NAME } = process.env
 
@@ -11,7 +11,7 @@ class UserRegisteredMessage {
 	}
 
 	public mail(): this {
-		new MailTemplate(this.user)
+		new Message(this.user)
 			.subject(`Hi ${this.user.name}, welcome to ${APP_NAME}!`)
 			.heading(`Welcome ${this.user.name}`)
 			.line('Lemon drops biscuit gummi bears chocolate cake. Powder sweet roll pie gummies brownie. Sweet cheesecake cookie tart pie marshmallow. Tootsie roll jelly beans halvah candy canes chocolate bar croissant lemon drops.')

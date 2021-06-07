@@ -3,7 +3,7 @@ import UserDocument from '../models/types/User.js'
 import logger from '../config/winston.conf.js'
 import ejs from 'ejs'
 
-class MailTemplate {
+class Message {
 	private _subject: string
 	private _heading: string
 	private _content: string[] = []
@@ -31,7 +31,7 @@ class MailTemplate {
 		return this
 	}
 
-	public sendMail(): void {
+	public sendMail(templateName?: string): void {
 		if (!this._subject || !this._user) return
 
 		const mailOptions: any = {
@@ -40,11 +40,14 @@ class MailTemplate {
 			subject: this._subject,
 		}
 
-		ejs.renderFile('dist/messages/templates/email.template.ejs', {
-			heading: this._heading,
-			content: this._content,
-			actions: this._actions,
-		})
+		ejs.renderFile(
+			`dist/messages/templates/${templateName || 'email.template.ejs'}`,
+			{
+				heading: this._heading,
+				content: this._content,
+				actions: this._actions,
+			}
+		)
 			.then(html => {
 				mailOptions.html = html
 				transport.sendMail(mailOptions, err => {
@@ -57,4 +60,4 @@ class MailTemplate {
 	}
 }
 
-export default MailTemplate
+export default Message
