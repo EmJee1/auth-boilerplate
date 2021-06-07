@@ -3,7 +3,7 @@ import UserDocument from '../models/types/User.js'
 import logger from '../config/winston.conf.js'
 import ejs from 'ejs'
 
-class Message {
+class Mailer {
 	private _subject: string
 	private _heading: string
 	private _content: string[] = []
@@ -60,4 +60,4 @@ class Message {
 	}
 }
 
-export default Message
+export default Mailer
