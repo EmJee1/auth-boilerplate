@@ -1,6 +1,6 @@
 // import dependencies
 import { Router } from 'express'
-import { validate } from 'express-validation'
+import validate from '../middlewares/validate.js'
 
 // import router helpers
 import * as handler from '../controllers/auth.controller.js'

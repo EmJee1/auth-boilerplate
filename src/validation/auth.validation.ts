@@ -1,18 +1,33 @@
 import tokenValidation from '../utils/tokenValidation.js'
-import { Joi } from 'express-validation'
+import Joi from 'joi'
 
 export const register = {
 	body: Joi.object({
-		email: Joi.string().email().required(),
-		password: Joi.string().min(6).required(),
-		name: Joi.string().min(4).required(),
+		email: Joi.string()
+			.email()
+			.required()
+			.error(new Error('Email has to be a valid address')),
+		password: Joi.string()
+			.min(6)
+			.required()
+			.error(new Error('Password needs at least 6 characters')),
+		name: Joi.string()
+			.min(4)
+			.required()
+			.error(new Error('Name needs at least 4 characters')),
 	}),
 }
 
 export const login = {
 	body: Joi.object({
-		email: Joi.string().email().required(),
-		password: Joi.string().min(6).required(),
+		email: Joi.string()
+			.email()
+			.required()
+			.error(new Error('Email has to be a valid address')),
+		password: Joi.string()
+			.min(6)
+			.required()
+			.error(new Error('Password needs at least 6 characters')),
 	}),
 }
 
