@@ -40,7 +40,7 @@ class MailTemplate {
 			subject: this._subject,
 		}
 
-		ejs.renderFile('../messages/templates/email.template.ejs', {
+		ejs.renderFile('dist/messages/templates/email.template.ejs', {
 			heading: this._heading,
 			content: this._content,
 			actions: this._actions,
