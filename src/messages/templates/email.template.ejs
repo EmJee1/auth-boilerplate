@@ -13,26 +13,24 @@
                                     <img src="<%= API_BASEURL + API_MAILLOGO %> " style="height: 110px;">
                                 </div>
                                 <div style="width:100%;max-width:575px;min-width:300px;background:#fff;margin:auto;box-sizing:border-box;border-radius:4px;border-bottom-left-radius:0;border-bottom-right-radius:0;padding:50px 30px 10px;">
-									<h1 style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';color:#3d4852;font-size:18px;font-weight:bold;margin-top:0;text-align:left">
-										<%= heading %> 
-									</h1>
-                                    <% content.forEach(line => { %>
-                                        <p style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
-                                            <%= line %>
-                                        </p>
-                                    <% }) %>
+									<% content.forEach(item => { %>
+                                        <% if (item.type === 'HEADING') { %>
+                                            <h1 style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';color:#3d4852;font-size:18px;font-weight:bold;margin-top:0;text-align:left">
+                                                <%= item.content %> 
+                                            </h1>
+                                        <% } else if (item.type === 'LINE') { %>
+                                            <p style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
+                                                <%= item.content %>
+                                            </p>
+                                        <% } else if (item.type === 'ACTION') { %>
+                                            <a class=”link” href="<%= item.href %>" target="_blank" style="padding: 8px 12px;border: 1px solid #ED2939;border-radius: 2px;font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size: 14px;color: #ffffff; text-decoration: none;font-weight: bold;display: inline-block; background-color: #ED2939;">
+                                                <%= item.content %>
+                                            </a>
+                                        <% } %>
+                                    <% }) %> 
                                 </div>
                             </div>
                         </td>
-                    </tr>
-					<tr>
-                        <% actions.forEach(action => { %> 
-                            <td class=”button” style="border-radius:2px;" bgcolor="#ED2939">
-                                <a class=”link” href="<%= action.href %>" target="_blank" style="padding: 8px 12px;border: 1px solid #ED2939;border-radius: 2px;font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size: 14px;color: #ffffff; text-decoration: none;font-weight: bold;display: inline-block;">
-                                    <%= action.text %> 
-                                </a>
-                            </td>
-                        <% }) %>
                     </tr>
                     <tr>
                         <td>

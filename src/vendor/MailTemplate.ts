@@ -3,63 +3,65 @@ import transport from '../config/nodemailer.conf.js'
 import UserDocument from '../models/types/User.js'
 import logger from '../config/winston.conf.js'
 
+interface MailContentItem {
+	content: string
+	href?: string
+	type: 'HEADING' | 'LINE' | 'ACTION'
+}
+
 class Mailer {
-	private _subject: string
-	private _heading: string
-	private _content: string[] = []
 	private _user: UserDocument
-	private _actions: { text: string; href: string }[] = []
+	private _mailContent: MailContentItem[] = []
+	private _mailOptions: {
+		from?: string
+		to?: string
+		subject?: string
+		html?: string
+	} = {}
 
 	constructor(user: UserDocument) {
 		this._user = user
+
+		this._mailOptions.from = process.env.SEND_MAIL_FROM
+		this._mailOptions.to = this._user.email
 	}
 
 	public subject(subject: string): this {
-		this._subject = subject
+		this._mailOptions.subject = subject
 		return this
 	}
 
-	public heading(heading: string): this {
-		this._heading = heading
+	public heading(content: string): this {
+		this._mailContent.push({ content, type: 'HEADING' })
 		return this
 	}
 
 	public line(content: string): this {
-		this._content.push(content)
+		this._mailContent.push({ content, type: 'LINE' })
 		return this
 	}
 
-	public action(action: { text: string; href: string }): this {
-		this._actions.push(action)
+	public action({ content, href }: { content: string; href: string }): this {
+		this._mailContent.push({ content, href, type: 'ACTION' })
 		return this
 	}
 
 	public sendMail(templateName?: string): void {
-		if (!this._subject || !this._user) return
+		if (!this._mailOptions.subject || !this._user) return
 
-		const mailOptions: any = {
-			from: process.env.SEND_MAIL_FROM,
-			to: this._user.email,
-			subject: this._subject,
-		}
+		const template = templateName || 'email.template.ejs'
 
-		ejs.renderFile(
-			`dist/messages/templates/${templateName || 'email.template.ejs'}`,
-			{
-				heading: this._heading,
-				content: this._content,
-				actions: this._actions,
-			}
-		)
+		ejs.renderFile(`dist/messages/templates/${template}`, {
+			content: this._mailContent,
+		})
 			.then(html => {
-				mailOptions.html = html
-				transport.sendMail(mailOptions, err => {
+				this._mailOptions.html = html
+
+				transport.sendMail(this._mailOptions, err => {
 					if (err) logger.error(`Nodemailer error: ${err}`)
 				})
 			})
-			.catch(err =>
-				logger.error(`Error while parsing ejs mail template: ${err}`)
-			)
+			.catch(err => logger.error(`EJS Parsing error: ${err}`))
 	}
 }
 
