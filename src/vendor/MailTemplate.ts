@@ -41,7 +41,7 @@ class Mailer {
 		return this
 	}
 
-	public action({ content, href }: { content: string; href: string }): this {
+	public action(content: string, href: string): this {
 		this._mailContent.push({ content, href, type: 'ACTION' })
 		return this
 	}

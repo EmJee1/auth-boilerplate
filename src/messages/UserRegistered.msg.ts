@@ -16,7 +16,7 @@ class UserRegisteredMessage {
 			.heading(`Welcome ${this.user.name}`)
 			.line('Lemon drops biscuit gummi bears chocolate cake. Powder sweet roll pie gummies brownie. Sweet cheesecake cookie tart pie marshmallow. Tootsie roll jelly beans halvah candy canes chocolate bar croissant lemon drops.')
 			.line('Sweet roll pudding wafer ice cream apple pie. Apple pie cake lemon drops danish icing. Macaroon jujubes icing cookie. Powder bear claw chocolate bar toffee cupcake icing lemon drops bear claw lollipop.')
-			.action({ content: 'Google here!', href: 'https://www.google.com/' })
+			.action('Google here!', 'https://www.google.com/')
 			.sendMail()
 
 		return this
