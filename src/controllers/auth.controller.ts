@@ -21,7 +21,7 @@ export const register = async (
 
 	new UserRegisteredMessage(newUser).mail()
 
-	res.status(201).json({ msg: 'User created successfully' })
+	return res.status(201).json({ msg: 'User created successfully' })
 }
 
 export const login = async (req: Request, res: Response): Promise<Response> => {

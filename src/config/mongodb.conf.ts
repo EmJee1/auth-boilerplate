@@ -1,5 +1,5 @@
-import logger from './winston.conf.js'
 import mongoose from 'mongoose'
+import logger from './winston.conf.js'
 
 mongoose.connect(process.env.DB_CONNECTION_URI, {
 	useNewUrlParser: true,

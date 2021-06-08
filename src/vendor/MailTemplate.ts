@@ -1,7 +1,7 @@
+import ejs from 'ejs'
 import transport from '../config/nodemailer.conf.js'
 import UserDocument from '../models/types/User.js'
 import logger from '../config/winston.conf.js'
-import ejs from 'ejs'
 
 class Mailer {
 	private _subject: string
@@ -18,14 +18,17 @@ class Mailer {
 		this._subject = subject
 		return this
 	}
+
 	public heading(heading: string): this {
 		this._heading = heading
 		return this
 	}
+
 	public line(content: string): this {
 		this._content.push(content)
 		return this
 	}
+
 	public action(action: { text: string; href: string }): this {
 		this._actions.push(action)
 		return this
@@ -51,11 +54,11 @@ class Mailer {
 			.then(html => {
 				mailOptions.html = html
 				transport.sendMail(mailOptions, err => {
-					if (err) logger.error('Nodemailer error: ' + err)
+					if (err) logger.error(`Nodemailer error: ${err}`)
 				})
 			})
 			.catch(err =>
-				logger.error('Error while parsing ejs mail template: ' + err)
+				logger.error(`Error while parsing ejs mail template: ${err}`)
 			)
 	}
 }

@@ -1,7 +1,7 @@
+import mongoose from 'mongoose'
+import supertest from 'supertest'
 import { server } from '../../config/express.conf'
 import User from '../../models/User.js'
-import supertest from 'supertest'
-import mongoose from 'mongoose'
 import app from '../../app.js'
 
 const request = supertest(app)

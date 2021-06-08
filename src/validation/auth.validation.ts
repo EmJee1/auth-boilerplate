@@ -1,5 +1,5 @@
-import tokenValidation from '../utils/tokenValidation.js'
 import Joi from 'joi'
+import tokenValidation from '../utils/tokenValidation.js'
 
 export const register = {
 	body: Joi.object({

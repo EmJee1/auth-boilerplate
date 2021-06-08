@@ -1,6 +1,6 @@
-import UserDocument from './types/User.js'
 import mongoose from 'mongoose'
 import { hash } from 'bcrypt'
+import UserDocument from './types/User.js'
 
 const UserSchema = new mongoose.Schema({
 	email: {
