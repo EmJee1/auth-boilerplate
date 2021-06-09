@@ -7,4 +7,11 @@ interface UserDocument extends mongoose.Document {
 	createdAt: Date
 }
 
+export interface IUser {
+	email: string
+	name: string
+	password: string
+	createdAt?: Date
+}
+
 export default UserDocument
