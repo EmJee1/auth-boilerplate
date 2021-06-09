@@ -51,7 +51,7 @@ class Mailer {
 
 		const template = templateName || 'email.template.ejs'
 
-		ejs.renderFile(`dist/messages/templates/${template}`, {
+		ejs.renderFile(`../messages/templates/${template}`, {
 			content: this._mailContent,
 		})
 			.then(html => {
