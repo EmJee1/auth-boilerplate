@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  APP_PORT: ${{ APP_PORT }}
+  APP_PORT: ${{ secrets.APP_PORT }}
 
 jobs:
   build:
