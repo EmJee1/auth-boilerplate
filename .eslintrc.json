@@ -24,7 +24,7 @@
 	},
 	"plugins": ["@typescript-eslint"],
 	"rules": {
-		"linebreak-style": ["error", "windows"],
+		"linebreak-style": 0,
 		"semi": ["error", "never"],
 		"import/extensions": [
 			"error",
