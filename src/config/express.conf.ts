@@ -8,6 +8,8 @@ import docs from '../docs'
 dotenv.config()
 
 const { APP_PORT } = process.env
+console.log('app_port ->>', APP_PORT)
+console.log(APP_PORT)
 
 const app = express()
 
