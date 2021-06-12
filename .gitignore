@@ -1,7 +1,12 @@
+logs/**
+*.log
+
+.eslintcache
+
 node_modules
 
 dist
 
 .env
-
-logs/**
+.env.test
+.env.production
