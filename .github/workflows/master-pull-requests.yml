@@ -29,3 +29,15 @@ jobs:
       - run: npm run lint
       - run: npm run build
       - run: npm test
+        env:
+          APP_PORT: ${{ secrets.APP_PORT }}
+          DB_CONNECTION_URI: ${{ secrets.DB_CONNECTION_URI }}
+          JSON_WEBTOKEN_SECRET: ${{ secrets.JSON_WEBTOKEN_SECRET }}
+          SEND_MAIL_FROM: ${{ secrets.SEND_MAIL_FROM }}
+          SMTP_MAIL_HOST: ${{ secrets.SMTP_MAIL_HOST }}
+          SMTP_MAIL_PORT: ${{ secrets.SMTP_MAIL_PORT }}
+          MAIL_AUTH_USER: ${{ secrets.MAIL_AUTH_USER }}
+          MAIL_AUTH_PASSWORD: ${{ secrets.MAIL_AUTH_PASSWORD }}
+          APP_NAME: ${{ secrets.APP_NAME }}
+          API_BASEURL: ${{ secrets.API_BASEURL }}
+          API_MAILLOGO: ${{ secrets.API_MAILLOGO }}
