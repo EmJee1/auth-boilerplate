@@ -3,10 +3,11 @@ import supertest from 'supertest'
 import { server } from '../../config/express.conf'
 import User from '../../models/User.js'
 import app from '../../app.js'
+import { IUser } from '../../models/types/User.js'
 
 const request = supertest(app)
 
-const { email, name, password } = {
+const { email, name, password }:IUser = {
 	email: 'test@email.com',
 	name: 'Some username',
 	password: 'password',
