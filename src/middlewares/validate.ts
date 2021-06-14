@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import { ObjectSchema } from 'joi'
 
 const validate =
-	(schema: { body?: ObjectSchema<any>; headers?: ObjectSchema<any> }): any =>
+	(schema: { body?: ObjectSchema<any>; headers?: ObjectSchema<any> }) =>
 		(req: Request, res: Response, next: NextFunction): Response | void => {
 			try {
 				Object.keys(schema).forEach((check: 'body' | 'headers') => {
