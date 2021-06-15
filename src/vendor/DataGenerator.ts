@@ -29,10 +29,10 @@ class DataGenerator {
 				separator: '-',
 				style: 'lowerCase',
 			}) +
-			this.emailExt[Math.floor(Math.random() * this.emailExt.length)] +
 			this.emailDomain[
 				Math.floor(Math.random() * this.emailDomain.length)
-			]
+			] +
+			this.emailExt[Math.floor(Math.random() * this.emailExt.length)]
 		)
 	}
 
