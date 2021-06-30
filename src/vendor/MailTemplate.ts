@@ -1,4 +1,5 @@
 import ejs from 'ejs'
+import mailQueue from '../config/bull.conf.js'
 import transport from '../config/nodemailer.conf.js'
 import UserDocument from '../models/types/User.js'
 import logger from '../config/winston.conf.js'
@@ -12,6 +13,7 @@ interface MailContentItem {
 class Mailer {
 	private _user: UserDocument
 	private _mailContent: MailContentItem[] = []
+	private _queue = false
 	private _mailOptions: {
 		from?: string
 		to?: string
@@ -46,6 +48,11 @@ class Mailer {
 		return this
 	}
 
+	public queue(): this {
+		this._queue = true
+		return this
+	}
+
 	public sendMail(templateName?: string): void {
 		if (!this._mailOptions.subject || !this._user) return
 
@@ -54,10 +61,13 @@ class Mailer {
 		ejs.renderFile(`dist/messages/templates/${template}`, {
 			content: this._mailContent,
 		})
-			.then(html => {
+			.then((html): any => {
 				this._mailOptions.html = html
 
-				transport.sendMail(this._mailOptions, err => {
+				if (this._queue)
+					return mailQueue.add({ mailOptions: this._mailOptions })
+
+				return transport.sendMail(this._mailOptions, err => {
 					if (err) logger.error(`Nodemailer error: ${err}`)
 				})
 			})
