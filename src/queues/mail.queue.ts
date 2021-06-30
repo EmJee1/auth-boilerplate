@@ -1,15 +1,7 @@
-import Queue from 'bull'
-import MailTransport from './nodemailer.conf.js'
+import MailTransport from '../config/nodemailer.conf.js'
+import queue from '../config/queue.conf.js'
 
-const { REDIS_HOST, REDIS_PORT, REDIS_PASSWORD } = process.env
-
-const mailQueue = new Queue('messages', {
-	redis: {
-		host: REDIS_HOST,
-		port: parseInt(REDIS_PORT),
-		password: REDIS_PASSWORD || undefined,
-	},
-})
+const mailQueue = queue('nodemailer')
 
 mailQueue.process(async job => {
 	try {

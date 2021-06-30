@@ -1,5 +1,5 @@
 import ejs from 'ejs'
-import mailQueue from '../config/bull.conf.js'
+import mailQueue from '../queues/mail.queue.js'
 import transport from '../config/nodemailer.conf.js'
 import UserDocument from '../models/types/User.js'
 import logger from '../config/winston.conf.js'
