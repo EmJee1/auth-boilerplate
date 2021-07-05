@@ -46,7 +46,7 @@
 				"imports": "always-multiline"
 			}
 		],
-		"curly": ["error", "multi-or-nest"],
+		"curly": ["error", "multi"],
 		"no-underscore-dangle": 0,
 		"nonblock-statement-body-position": 0,
 		"implicit-arrow-linebreak": 0,
