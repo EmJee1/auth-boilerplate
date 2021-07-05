@@ -1,5 +1,5 @@
 {
-	"name": "auth-boilerplate",
+	"name": "fluxxo",
 	"type": "commonjs",
 	"version": "1.0.0",
 	"description": "",
@@ -14,8 +14,17 @@
 		"test:watch": "cross-env NODE_ENV=development jest --watch --testPathPattern=dist",
 		"lint": "eslint ./src/ --ext .ts"
 	},
-	"keywords": [],
-	"author": "",
+	"homepage": "https://github.com/EmJee1/fluxxo#readme",
+	"bugs": {
+		"url": "https://github.com/EmJee1/fluxxo/issues"
+	},
+	"keywords": [
+		"Fluxxo",
+		"TypeScript",
+		"Template",
+		"Node"
+	],
+	"author": "EmJee1",
 	"license": "ISC",
 	"dependencies": {
 		"bcrypt": "^5.0.1",
