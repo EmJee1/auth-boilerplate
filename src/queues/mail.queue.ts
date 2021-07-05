@@ -1,12 +1,19 @@
-import MailTransport from '../config/nodemailer.conf.js'
+import { SentMessageInfo, Transporter } from 'nodemailer'
+import { MailOptions } from 'nodemailer/lib/smtp-transport'
 import queue from '../config/queue.conf.js'
 
 const mailQueue = queue('nodemailer')
 
 mailQueue.process(async job => {
-	const { mailOptions } = job.data
+	const {
+		mailOptions,
+		transport,
+	}: {
+		mailOptions: MailOptions
+		transport: Transporter<SentMessageInfo>
+	} = job.data
 
-	MailTransport.sendMail(mailOptions, err => {
+	transport.sendMail(mailOptions, err => {
 		if (err) return Promise.reject(err)
 
 		return Promise.resolve(

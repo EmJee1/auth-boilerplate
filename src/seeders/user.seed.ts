@@ -1,6 +1,8 @@
-import DataGenerator from '../vendor/DataGenerator.js'
-import DBSeeder from '../vendor/DBSeeder.js'
+import DataGenerator from 'fluxxo-core/dist/DataGenerator'
+import DBSeeder from 'fluxxo-core/dist/DBSeeder'
+import dotenv from 'dotenv'
 
+dotenv.config()
 const DataGen = new DataGenerator()
 const Seeder = new DBSeeder()
 
